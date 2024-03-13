@@ -18,7 +18,6 @@ train, test = keras.utils.image_dataset_from_directory(
 classes = train.class_names
 classes
 
-# Samples reveale
 
 image1 = cv2.imread(
     "D:/internship/sync intern/archive (1)/plantvillage dataset/color/Cherry_(including_sour)___Powdery_mildew/1ca9be51-dea4-4075-8907-e583f85254b2___FREC_Pwd.M 4850.JPG")
@@ -44,7 +43,6 @@ plt.title('pepper bell bacterial spot', size=18)
 plt.axis('off')
 plt.show()
 
-# CNN
 model = keras.Sequential([
     keras.layers.Rescaling(scale=1 / 255, input_shape=(224, 224, 3)),
 
@@ -56,18 +54,10 @@ model = keras.Sequential([
     keras.layers.MaxPool2D((2, 2)),
     keras.layers.Dropout(0.2),
 
-    keras.layers.Conv2D(64, (3, 3), activation='relu'),
-    keras.layers.MaxPool2D((2, 2)),
-    keras.layers.Dropout(0.2),
-
-    keras.layers.Conv2D(64, (3, 3), activation='relu'),
-    keras.layers.MaxPool2D((2, 2)),
-    keras.layers.Dropout(0.2),
 
     keras.layers.Conv2D(128, (3, 3), activation='relu'),
     keras.layers.MaxPool2D((2, 2)),
 
-    # fully connected layers
 
     keras.layers.Flatten(),
     keras.layers.Dense(128, activation='relu'),
@@ -84,9 +74,8 @@ model.compile(
 
 model.summary()
 
-# Model training
 
-history = model.fit(train, epochs=5)
+history = model.fit(train, epochs=20)
 
 accuracy = history.history['accuracy']
 loss = history.history['loss']
